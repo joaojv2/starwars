@@ -19,22 +19,17 @@ class MainModel(val presenter: Mvp.Presenter): Mvp.Model {
 
             if (response.isSuccessful && response.body() != null) {
 
-                val lista = mutableListOf<Produto>()
-                for(item in response.body()){
-                    lista.add(Produto(item.title ?: "",
-                            item.price ?: 0.0,
-                            item.seller ?: "",
-                            item.thumbnailHd ?: ""))
+                val itens: List<Produto> = response.body().map {
+                    Produto(it.title ?: "",
+                            it.price ?: 0.0,
+                            it.seller ?: "",
+                            it.thumbnailHd ?: "")
                 }
 
-
-//                val itens: List<Produto> = response.body().map {
-//
-//                }
-
-                //subscriber.onNext(itens)
+                subscriber.onNext(itens)
                 subscriber.onCompleted()
-            } else {
+            }
+            else {
                 subscriber.onError(Throwable(response.message()))
             }
         }

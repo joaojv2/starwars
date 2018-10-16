@@ -10,6 +10,7 @@ interface Mvp {
 
     interface View{
         fun mostrarLista(lista: List<Produto>)
+        fun mostrarErro(error: String)
     }
 
     interface Presenter{
