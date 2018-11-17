@@ -1,4 +1,4 @@
-package com.felcks.loja_star_wars
+package com.felcks.starwars
 
 import org.junit.Test
 
